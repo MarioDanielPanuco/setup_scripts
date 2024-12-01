@@ -1,5 +1,13 @@
 #!/bin/bash
 
+
+# ########################################################
+# VARIABLES
+BORDER='########################################################'
+
+# ########################################################
+
+
 # ########################################################
 # Function to display usage information
 # ########################################################
@@ -26,7 +34,7 @@ PROJECT_NAME=$1
 mkdir -p "$PROJECT_NAME"/{lib,src}
 cd "$PROJECT_NAME"
 
-echo "Creating directories"
+echo "Creating directories\n..."
 
 
 # ########################################################
@@ -39,8 +47,7 @@ int main(void) {
 
     return 0;
 }" > src/main.c
-echo "src/main.c file created"
-
+printf "$BORDER\n%s $BORDER\n" "src/main.c file created"
 
 # ########################################################
 # Create lib_1.h with a basic structure
@@ -57,13 +64,12 @@ void exampleFunction();
 
 #endif // LIB_1_H" > lib/lib_1.h
 
-echo "lib/lib_1.h file created"
-
+printf "$BORDER\n%s $BORDER\n" "lib/lib_1.h file created"
 
 # ########################################################
 # Create CMakeLists.txt
 # ########################################################
-echo "cmake_minimum_required(VERSION 3.7)
+echo "cmake_minimum_required(VERSION 3.31)
 project(${PROJECT_NAME})
 
 # Set the C Compiler
@@ -93,7 +99,17 @@ if(CLANG_FORMAT)
     )
 endif()
 " > CMakeLists.txt
-echo "CMakeLists.txt file created"
+printf "$BORDER\n%s $BORDER\n" "CMakeLists.txt file created"
+
+# ########################################################
+# Create build.sh to build and run the program using CMake
+# ########################################################
+echo "#!/bin/bash
+mkdir -p build
+cd build
+cmake ..
+make" > build.sh
+echo "build.sh script created"
 
 # ########################################################
 # Create run.sh to build and run the program using CMake
@@ -104,9 +120,10 @@ cd build
 cmake ..
 make
 ./main.exe" > run.sh
-echo "run.sh script created"
+printf "$BORDER\n%s $BORDER\n" "run.sh script created"
 
 chmod +x run.sh
+chmod +x build.sh
 
-echo "C project setup complete in $PROJECT_NAME"
+printf "$BORDER\n%s $BORDER\n" "C project setup complete in $PROJECT_NAME"
 

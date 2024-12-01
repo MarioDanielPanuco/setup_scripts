@@ -27,13 +27,13 @@ echo "program main
 end program main" > src/main.f90
 
 # Create lib_1.f90 with a basic module
-# echo "module lib_1
-#     implicit none
-#
-#     ! Your module code goes here
-#
-# end module lib_1" > lib/lib_1.f90
+echo "module lib_1
+    implicit none
 
+    ! Your module code goes here
+
+end module lib_1" > lib/lib_1.f90
+#
 # Create a basic Makefile
 echo "# Compiler and flags
 FC = gfortran
